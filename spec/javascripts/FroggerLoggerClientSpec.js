@@ -23,7 +23,7 @@ describe("FroggerLoggerClient", function() {
 
     describe(".isMethodAvailable(method)", function() {
       beforeEach(function() {
-        spyOn(subject, 'availableMethods').andReturn([
+        spyOn(subject, 'availableMethods').and.returnValue([
           'someMethod',
           'availableMethod',
           'anotherMethod' 
@@ -42,7 +42,7 @@ describe("FroggerLoggerClient", function() {
     describe(".isMessageValid(message)", function() {
       describe("method is available", function() {
         beforeEach(function() {
-          spyOn(subject, 'isMethodAvailable').andReturn(true);
+          spyOn(subject, 'isMethodAvailable').and.returnValue(true);
         });
 
         it("should return true if message is valid", function() {
@@ -71,7 +71,7 @@ describe("FroggerLoggerClient", function() {
 
       describe("method is not available", function() {
         beforeEach(function() {
-          spyOn(subject, 'isMethodAvailable').andReturn(false);
+          spyOn(subject, 'isMethodAvailable').and.returnValue(false);
         });
 
         it("should return false if method is not available", function() {
@@ -94,7 +94,7 @@ describe("FroggerLoggerClient", function() {
 
       describe("method is valid", function() {
         beforeEach(function() {
-          spyOn(subject, 'isMessageValid').andReturn(true);
+          spyOn(subject, 'isMessageValid').and.returnValue(true);
           spyOn(console, message.method);
         });
 
@@ -106,7 +106,7 @@ describe("FroggerLoggerClient", function() {
 
       describe("method is invalid", function() {
         beforeEach(function() {
-          spyOn(subject, 'isMessageValid').andReturn(false);
+          spyOn(subject, 'isMessageValid').and.returnValue(false);
           spyOn(console, 'error');
         });
 

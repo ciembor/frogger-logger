@@ -6,6 +6,9 @@ Gem::Specification.new do |s|
   s.description = "This logger will you to log from server-side applications (like Ruby on Rails or Sinatra) to the browser's JavaScript console."
   s.authors     = ["Maciej Ciemborowicz", "Marcin Kostrzewa"]
   s.add_development_dependency "jasmine", [">= 2.0.0"]
+  s.add_development_dependency "rspec", [">= 2.14.1"]
+  s.add_development_dependency "guard"
+  s.add_development_dependency "guard-rspec"
   s.files       = []
   s.homepage    = 'https://github.com/ciembor/frogger-logger/'
   s.license     = 'MIT'

@@ -1,4 +1,4 @@
 require 'bundler/setup'
-require 'frogger_logger'
+require 'frogger-logger'
 
 Bundler.setup

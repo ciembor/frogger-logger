@@ -8,6 +8,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency "em-websocket"
 
+  s.add_development_dependency "em-websocket-client"
   s.add_development_dependency "jasmine", [">= 2.0.0"]
   s.add_development_dependency "rspec", [">= 2.14.1"]
   s.add_development_dependency "guard"

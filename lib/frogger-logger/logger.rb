@@ -1,24 +1,35 @@
+require 'frogger-logger'
 require 'json'
+
 module FroggerLogger
   class Logger
-    def self.init(channel)
-      @logger = new(channel)
-    end
 
-    def self.get
-      @logger
-    end
+    METHODS = [:debug, :log, :info, :warn, :error]
 
-    def self.log(message)
-      get.log(message)
+    class << self
+      def init(channel)
+        @logger = new(channel)
+      end
+
+      def get
+        @logger
+      end
+
+      METHODS.each do |method|
+        define_method method do |msg|
+          get.send(method, msg)
+        end
+      end
     end
 
     def initialize(channel)
       @channel = channel
     end
 
-    def log(message)
-      @channel.push({ method: :log, content: message }.to_json)
+    METHODS.each do |method|
+      define_method method do |msg|
+        @channel.push({ method: method, content: msg }.to_json)
+      end
     end
   end
 end

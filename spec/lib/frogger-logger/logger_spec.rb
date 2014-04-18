@@ -22,12 +22,15 @@ describe FroggerLogger::Logger do
     end
   end
 
-  describe '#log' do
-    let (:channel) { double }
 
-    it 'pushes message json to injected channel' do
-      channel.should_receive(:push).with({ method: :log, content: "hello!" }.to_json)
-      described_class.new(channel).log("hello!")
+  [:debug, :log, :info, :warn, :error].each do |method|
+    describe method do
+      let (:channel) { double }
+
+      it 'pushes message json to injected channel' do
+        channel.should_receive(:push).with({ method: method, content: "hello!" }.to_json)
+        described_class.new(channel).send(method, "hello!")
+      end
     end
   end
 end

@@ -9,7 +9,9 @@ RSpec.configure do |config|
   config.include ClientExpectations
   config.after(:each) do
     if EM::reactor_running?
-      EM::stop_event_loop
+      EM::next_tick do
+        EM::stop_event_loop
+      end
     end
   end
 end

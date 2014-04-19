@@ -116,9 +116,30 @@ describe("FroggerLoggerClient", function() {
         });
       });
 
-    });
+      describe(".init(address, window)", function() {
+        beforeEach(function() {
+          address = 'ws://test.address';
+          window = {};
+          e = {
+            data: {}
+          }
+          spyOn(window, 'WebSocket').and.returnValue(function() {return {onmessage: null}});
+          spyOn(subject, 'handleMessage');
+        });
 
-    // TODO: spec for init
+        it("should create a WebSocket client which connects to the given address", function() {
+          subject.init(address);
+          expect(window.WebSocket).toHaveBeenCalledWith(address);
+        });
+
+        xit("should have onmessage method overriden with a function which handles message", function() {
+          ws = subject.init(address, window);
+          ws.onmessage(e);
+          expect(subject.handleMessage).toHaveBeenCalledWith(e.data);
+        });
+      });
+
+    });
 
   });
 });

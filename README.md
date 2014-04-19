@@ -1,4 +1,4 @@
-frogger-logger (early development!)
+frogger-logger (early development!) [![Build Status](https://travis-ci.org/ciembor/frogger-logger.svg?branch=master)](https://travis-ci.org/ciembor/frogger-logger)
 =======
 |![Obey!](http://oi59.tinypic.com/33lcao2.jpg)|Add `gem 'frogger-logger'` line to the `:development` section of your Gemfile. After this run `bundle install`. You will love it :).|
 |:---:|:---:|

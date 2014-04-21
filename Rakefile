@@ -1,12 +1,12 @@
-require 'rspec/core/rake_task'
-RSpec::Core::RakeTask.new(:spec)
-task default: :spec
+require 'jasmine'
 
-begin
-  require 'jasmine'
-  load 'jasmine/tasks/jasmine.rake'
-rescue LoadError
-  task :jasmine do
-    abort "Jasmine is not available. In order to run jasmine, you must: (sudo) gem install jasmine"
+load 'jasmine/tasks/jasmine.rake'
+
+task :travis do
+  ['rspec spec', 'rake jasmine:ci'].each do |cmd|
+    puts "Starting to run #{cmd}..."
+    system("export DISPLAY=:99.0 && bundle exec #{cmd}")
   end
 end
+
+task default: :travis

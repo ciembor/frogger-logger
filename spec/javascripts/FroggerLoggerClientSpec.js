@@ -132,7 +132,7 @@ describe("FroggerLoggerClient", function() {
           expect(window.WebSocket).toHaveBeenCalledWith(address);
         });
 
-        xit("should have onmessage method overriden with a function which handles message", function() {
+        it("should have onmessage method overriden with a function which handles message", function() {
           ws = subject.init(address, window);
           ws.onmessage(e);
           expect(subject.handleMessage).toHaveBeenCalledWith(e.data);

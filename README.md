@@ -1,4 +1,4 @@
-frogger-logger  [![Build Status](https://travis-ci.org/ciembor/frogger-logger.svg?branch=master)](https://travis-ci.org/ciembor/frogger-logger) [![Dependency Status](https://gemnasium.com/ciembor/frogger-logger.svg)](https://gemnasium.com/ciembor/frogger-logger)
+frogger-logger  [![Build Status](https://travis-ci.org/ciembor/frogger-logger.svg?branch=master)](https://travis-ci.org/ciembor/frogger-logger) [![Code Climate](https://codeclimate.com/github/ciembor/frogger-logger.png)](https://codeclimate.com/github/ciembor/frogger-logger) [![Dependency Status](https://gemnasium.com/ciembor/frogger-logger.svg)](https://gemnasium.com/ciembor/frogger-logger)
 =======
 |![Obey!](http://oi59.tinypic.com/33lcao2.jpg)|Add `gem 'frogger-logger'` line to the `:development` section of your Gemfile. After this run `bundle install`. You will love it :).|
 |:---:|:---:|

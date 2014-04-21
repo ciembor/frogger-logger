@@ -17,6 +17,14 @@ gem build frogger-logger.gemspec
 gem install frogger-logger-x.x.x.gem --dev
 ```
 ### Running specs
+To run all specs:
+```bash
+rake travis
+```
+or simply
+```bash
+rake
+```
 To run Ruby specs:
 ```bash
 bundle exec rspec

@@ -4,6 +4,15 @@ frogger-logger  [![Build Status](https://travis-ci.org/ciembor/frogger-logger.sv
 |:---:|:---:|
 ## Rails logger for a browser's console.
 This logger will allow you to log from your Ruby (Rails?) code directly to your browser.
+## Usage
+Add `gem 'frogger-logger'` line to the `:development` section of your Gemfile. Then run:
+```bash
+bundle install
+```
+Add the client to the `app/views/layouts/application.html.erb` and other layouts:
+```ruby
+<%= javascript_include_tag("frogger_logger/client") if Rails.env.development? %>
+```
 ## Development
 ### Downloading source
 ```bash

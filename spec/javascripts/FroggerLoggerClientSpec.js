@@ -84,6 +84,15 @@ describe("FroggerLoggerClient", function() {
       });
     });
 
+    describe(".colors()", function() {
+      xit("should return an object with colors assigned to method names")
+    });
+
+    describe(".messageTemplate(message)", function() {
+      xit("should return template for object if content can be parsed to it")
+      xit("should return template for string if it's not an object")
+    });
+
     describe(".handleMessage(message)", function() {
       beforeEach(function() {
         message = { method: 'someMethod', content: 'someContent' };

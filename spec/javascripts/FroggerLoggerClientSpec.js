@@ -121,7 +121,7 @@ describe("FroggerLoggerClient", function() {
           address = 'ws://test.address';
           window = {};
           e = {
-            data: {}
+            data: '{}'
           }
           spyOn(window, 'WebSocket').and.returnValue(function() {return {onmessage: null}});
           spyOn(subject, 'handleMessage');
@@ -135,7 +135,7 @@ describe("FroggerLoggerClient", function() {
         it("should have onmessage method overriden with a function which handles message", function() {
           ws = subject.init(address, window);
           ws.onmessage(e);
-          expect(subject.handleMessage).toHaveBeenCalledWith(e.data);
+          expect(subject.handleMessage).toHaveBeenCalledWith(JSON.parse(e.data));
         });
       });
 

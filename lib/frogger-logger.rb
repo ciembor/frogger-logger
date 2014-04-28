@@ -8,7 +8,7 @@ module FroggerLogger
   EXTEND_WITH_DSL = true
 
   class << self
-    def init(host = "0.0.0.0", port = 8080)
+    def init(host = "0.0.0.0", port = 2999)
       channel = EM::Channel.new
       Logger.init(channel)
       Thread.new do

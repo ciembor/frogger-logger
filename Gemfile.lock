@@ -3,7 +3,7 @@ PATH
   specs:
     frogger-logger (0.0.1)
       em-websocket
-      railties (~> 3.1)
+      railties (>= 3.1)
 
 GEM
   remote: https://rubygems.org/

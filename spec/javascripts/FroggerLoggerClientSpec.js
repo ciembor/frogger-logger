@@ -84,6 +84,69 @@ describe("FroggerLoggerClient", function() {
       });
     });
 
+    describe(".colors()", function() {
+      it("should return an object with colors assigned to method names", function() {
+        var colors = subject.colors();
+        expect(colors['debug']).toEqual('#088');
+        expect(colors['info']).toEqual('#008');
+        expect(colors['log']).toEqual('#080');
+        expect(colors['error']).toEqual('#800');
+        expect(colors['warn']).toEqual('#808');
+      });
+    });
+
+    describe(".stringTemplate(content, color)", function() {
+      it("should return template for a string", function() {
+        var template = subject.stringTemplate('some content', '#123');
+        expect(template).toEqual([
+          '%c frog %c some content',
+          'background: #123; color: #fff',
+          'color: #123'
+        ]);
+      });
+    });
+
+    describe(".objectTemplate(content, color)", function() {
+      it("should return template for an object", function() {
+        var content = { "key": "value" }
+        var template = subject.objectTemplate(content, '#123');
+        expect(template).toEqual([
+          '%c frog ',
+          'background: #123; color: #fff',
+          content
+        ]);
+      });
+    });
+
+    describe(".messageTemplate(message)", function() {
+      beforeEach(function() {
+        subject.colors = function() {
+          return {
+            'some_method': '#123'
+          }
+        };
+      });
+
+      it("should return template for object if content can be parsed to it", function() {
+        var message = {
+          "content": '{"key": "value"}',
+          "method": 'some_method'
+        };
+        spyOn(subject, 'objectTemplate');
+        subject.messageTemplate(message);
+        expect(subject.objectTemplate).toHaveBeenCalledWith(JSON.parse(message.content), '#123');
+      });
+      it("should return template for string if it's not an object", function() {
+        var message = {
+          "content": 'This is not an object.',
+          "method": 'some_method'
+        };
+        spyOn(subject, 'stringTemplate');
+        subject.messageTemplate(message);
+        expect(subject.stringTemplate).toHaveBeenCalledWith(message.content, '#123');
+      });
+    });
+
     describe(".handleMessage(message)", function() {
       beforeEach(function() {
         message = { method: 'someMethod', content: 'someContent' };
@@ -99,8 +162,10 @@ describe("FroggerLoggerClient", function() {
         });
 
         it("should log content to the console using correct method", function() {
+          spyOn(subject, 'messageTemplate').and.returnValue(['template']);
           subject.handleMessage(message);
-          expect(console[message.method]).toHaveBeenCalledWith(message.content);
+          expect(subject.messageTemplate).toHaveBeenCalledWith(message);
+          expect(console[message.method]).toHaveBeenCalledWith('template');
         });
       });
 
@@ -121,7 +186,7 @@ describe("FroggerLoggerClient", function() {
           address = 'ws://test.address';
           window = {};
           e = {
-            data: {}
+            data: '{}'
           }
           spyOn(window, 'WebSocket').and.returnValue(function() {return {onmessage: null}});
           spyOn(subject, 'handleMessage');
@@ -135,7 +200,7 @@ describe("FroggerLoggerClient", function() {
         it("should have onmessage method overriden with a function which handles message", function() {
           ws = subject.init(address, window);
           ws.onmessage(e);
-          expect(subject.handleMessage).toHaveBeenCalledWith(e.data);
+          expect(subject.handleMessage).toHaveBeenCalledWith(JSON.parse(e.data));
         });
       });
 

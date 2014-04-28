@@ -88,6 +88,14 @@ describe("FroggerLoggerClient", function() {
       xit("should return an object with colors assigned to method names")
     });
 
+    describe(".stringTemplate(content, color)", function() {
+      xit("should return template for a string");
+    });
+
+    describe(".objectTemplate(content, color)", function() {
+      xit("should return template for an object");
+    });
+
     describe(".messageTemplate(message)", function() {
       xit("should return template for object if content can be parsed to it")
       xit("should return template for string if it's not an object")

@@ -12,7 +12,7 @@ class DummyClient
   end
 
   def run
-    sleep(0.1)
+    sleep(0.2)
     EM.next_tick do
       connection = EM::WebSocketClient.connect("ws://#{@host}:#{@port}")
       connection.callback do

@@ -1,0 +1,5 @@
+FroggerLogger = {};
+FroggerLogger.PORT = <%= (FroggerLogger::PORT if defined? FroggerLogger::PORT).to_json %>;
+FroggerLogger.TIMESTAMP = <%= Time.now.to_json %>;
+
+<%= File.open(File.dirname(__FILE__) + '/FroggerLoggerClient.js', 'r').read %>

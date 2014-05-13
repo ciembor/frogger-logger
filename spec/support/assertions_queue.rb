@@ -1,5 +1,5 @@
 class AssertionsQueue
-  TIMEOUT = 0.1
+  TIMEOUT = 1
   def initialize(queue)
     @queue = queue
   end

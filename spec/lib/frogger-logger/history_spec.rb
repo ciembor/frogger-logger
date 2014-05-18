@@ -40,4 +40,6 @@ describe FroggerLogger::History do
       history.since(since_time + 1).should == []
     end
   end
+
+  pending 'should use history_expiration_time from configuration'
 end

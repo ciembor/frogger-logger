@@ -3,7 +3,6 @@ PATH
   specs:
     frogger-logger (0.0.1)
       em-websocket
-      rack-request-id
 
 GEM
   remote: https://rubygems.org/
@@ -49,7 +48,6 @@ GEM
       method_source (~> 0.8)
       slop (~> 3.4)
     rack (1.5.2)
-    rack-request-id (0.0.3)
     rake (10.3.2)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.4)

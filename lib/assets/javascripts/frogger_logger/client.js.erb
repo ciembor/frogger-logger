@@ -1,5 +1,5 @@
 FroggerLogger = <%= {
-  PORT: (FroggerLogger::PORT if defined? FroggerLogger::PORT),
+  PORT: FroggerLogger.configuration.port,
   TIMESTAMP: Time.now
 }.to_json %>;
 

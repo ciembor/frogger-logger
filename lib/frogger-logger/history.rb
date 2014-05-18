@@ -1,8 +1,6 @@
 module FroggerLogger
   class History
 
-    EXPIRATION_TIME_IN_SECONDS = 600
-
     def initialize()
       @messages = []
     end
@@ -23,7 +21,7 @@ module FroggerLogger
     private
 
     def purge_time?(timestamp)
-      timestamp < Time.at(Time.now - Time.at(EXPIRATION_TIME_IN_SECONDS))
+      timestamp < Time.at(Time.now - Time.at(FroggerLogger.configuration.history_expiration_time))
     end
 
     def newer_than?(message, timestamp)

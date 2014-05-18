@@ -1,4 +1,5 @@
 require 'em-websocket'
+require 'frogger-logger/configuration'
 require 'frogger-logger/history'
 require 'frogger-logger/logger'
 require 'frogger-logger/dsl'
@@ -9,7 +10,20 @@ module FroggerLogger
   EXTEND_WITH_DSL = true
 
   class << self
-    def init(host = "0.0.0.0", port = 2999)
+    attr_writer :configuration
+
+    def configuration
+      @configuration ||= Configuration.new
+    end
+
+    def configure
+      yield(configuration)
+    end
+
+    def init(host = configuration.host, port = configuration.port)
+      if configuration.extend_with_dsl
+        Kernel.send(:include, FroggerLogger::DSL)
+      end
       channel = EM::Channel.new
       Logger.init(channel)
       Thread.new do
@@ -32,10 +46,6 @@ module FroggerLogger
       define_method method do |msg|
         FroggerLogger::Logger.send(method, msg)
       end
-    end
-
-    if EXTEND_WITH_DSL
-      Kernel.send(:include, FroggerLogger::DSL)
     end
   end
 end

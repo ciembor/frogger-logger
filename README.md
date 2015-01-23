@@ -22,8 +22,15 @@ FroggerLogger.configure do |config|
   config.port = 2999
   config.history_expiration_time = 600
   config.extend_with_dsl = true
+  config.json_format = true
 end
 ```
+## Use :frog:
+If you didn't disable the dsl (`config.extend_with_dsl = false`), you can log very easly
+```ruby
+frog 'this will be logged :)'
+```
+Also it you didn't disable translating to json (`config.json_format = false`), your objects will be automagically translated to this format. This allows you to browse ruby objects, arrays and hashes in your browser!
 ## Development
 ### Downloading source
 ```bash

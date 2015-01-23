@@ -48,4 +48,16 @@ describe FroggerLogger::Configuration do
     end
   end
 
+  describe '#json_format' do
+    it 'should have mutators' do
+      json_format = false
+      configuration.json_format = json_format
+      configuration.json_format.should eq json_format
+    end
+
+    it 'should have proper default value' do
+      configuration.json_format.should eq true
+    end
+  end
+
 end

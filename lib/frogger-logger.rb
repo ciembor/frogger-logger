@@ -1,6 +1,7 @@
 require 'em-websocket'
 require 'frogger-logger/configuration'
 require 'frogger-logger/history'
+require 'frogger-logger/formatter'
 require 'frogger-logger/logger'
 require 'frogger-logger/dsl'
 require 'frogger-logger/engine'

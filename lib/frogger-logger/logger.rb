@@ -23,13 +23,14 @@ module FroggerLogger
     end
 
     def initialize(channel)
+      @formatter = FroggerLogger::Formatter.new(FroggerLogger.configuration.json_format)
       @history = FroggerLogger::History.new
       @channel = channel
     end
 
     METHODS.each do |method|
       define_method method do |content|
-        message = { method: method, content: content }
+        message = { method: method, content: @formatter.format(content) }
         @history << message.merge({ timestamp: Time.now })
         @channel.push(message.to_json)
       end

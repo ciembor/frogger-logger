@@ -19,7 +19,7 @@ describe FroggerLogger::Formatter do
       end
 
       it 'should return true if object respond to to_json and is not a string' do
-        content = stub
+        content = double
         content.stub(:to_json)
         expect(formatter.to_json?(content)).to be_true
       end
@@ -38,7 +38,7 @@ describe FroggerLogger::Formatter do
 
     describe '#to_json?' do
       it 'should return false even if object respond to to_json and is not a string' do
-        content = stub
+        content = double
         content.stub(:to_json)
         expect(formatter.to_json?(content)).to be_false
       end

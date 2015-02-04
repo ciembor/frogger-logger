@@ -1,6 +1,0 @@
-FroggerLogger = <%= {
-  PORT: FroggerLogger.configuration.port,
-  TIMESTAMP: Time.now
-}.to_json %>;
-
-<%= File.open(File.dirname(__FILE__) + '/FroggerLoggerClient.js', 'r').read %>

@@ -1,4 +1,6 @@
 require 'em-websocket'
+require 'json'
+require 'nokogiri'
 require 'frogger-logger/configuration'
 require 'frogger-logger/history'
 require 'frogger-logger/formatter'
@@ -34,6 +36,13 @@ module FroggerLogger
               sid = channel.subscribe do |msg|
                 ws.send msg
               end
+              ws.onmessage do |message|
+                message = JSON.parse(message)
+                if message['status'] && 'ready' == message['status']
+                  # binding.pry
+                  FroggerLogger::Logger.get.send_history(message['client_id'])
+                end
+              end
               ws.onclose do
                 channel.unsubscribe(sid)
               end
@@ -41,6 +50,12 @@ module FroggerLogger
           end
         end
       end
+    end
+
+    def init_request(start_time)
+      client = FroggerLogger::Client.new(start_time)
+      FroggerLogger::Logger.get.add_client(client)
+      client.id
     end
 
     FroggerLogger::Logger::METHODS.each do |method|

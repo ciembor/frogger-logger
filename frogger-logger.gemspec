@@ -7,6 +7,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Maciej Ciemborowicz", "Marcin Kostrzewa"]
 
   s.add_runtime_dependency "em-websocket"
+  s.add_runtime_dependency "nokogiri"
 
   s.add_development_dependency "em-websocket-client"
   s.add_development_dependency "jasmine", [">= 2.0.0"]

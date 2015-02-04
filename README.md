@@ -10,16 +10,13 @@ Add `gem 'frogger-logger'` line to the `:development` section of your Gemfile. T
 ```bash
 bundle install
 ```
-Add the client to the `app/views/layouts/application.html.erb` and other layouts:
-```ruby
-<%= javascript_include_tag("frogger_logger/client") if Rails.env.development? %>
-```
 ### :frog: Configure
 Here is example configuration with default values. If you use Rails, the best place to put this code is `config/environments/development.rb`.
 ```ruby
 FroggerLogger.configure do |config|
   config.host = '0.0.0.0'
   config.port = 2999
+  config.client_js_path = '/assets/frogger_logger/client.js'
   config.history_expiration_time = 600
   config.extend_with_dsl = true
   config.json_format = true

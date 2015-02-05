@@ -26,7 +26,6 @@ module FroggerLogger
     def client_config(client_id)
       config = {
         PORT: FroggerLogger.configuration.port,
-        TIMESTAMP: Time.now,
         ID: client_id
       }
     end

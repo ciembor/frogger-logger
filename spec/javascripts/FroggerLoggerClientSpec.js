@@ -2,6 +2,7 @@ describe("FroggerLoggerClient", function() {
 
   describe(".prototype", function() {
     beforeEach(function() {
+      FroggerLogger = {ID: 'client id'};
       subject = FroggerLoggerClient.prototype;
     });
 
@@ -81,6 +82,29 @@ describe("FroggerLoggerClient", function() {
           })).toBeFalsy();
         });
 
+      });
+    });
+
+    describe(".isMessageForThisClient(message)", function() {
+      describe("message has no client_id", function() {
+        it("should return true", function() {
+          var message = {};
+          expect(subject.isMessageForThisClient(message)).toBeTruthy();
+        });
+      });
+
+      describe("client_id of message and client id is the same", function() {
+        it("should return true", function() {
+          var message = {client_id: 'client id'};
+          expect(subject.isMessageForThisClient(message)).toBeTruthy();
+        });
+      });
+
+      describe("client_id of message and client id are different", function() {
+        it("should return false", function() {
+          var message = {client_id: 'different client id'};
+          expect(subject.isMessageForThisClient(message)).toBeFalsy();
+        });
       });
     });
 

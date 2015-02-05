@@ -26,6 +26,17 @@ describe FroggerLogger::Configuration do
     end
   end
 
+  describe '#client_js_path' do
+    it 'should have mutators' do
+      configuration.client_js_path = '/client.js'
+      configuration.client_js_path.should eq '/client.js'
+    end
+
+    it 'should have proper default value' do
+      configuration.client_js_path.should eq '/assets/frogger_logger/client.js'
+    end
+  end
+
   describe '#history_expiration_time' do
     it 'should have mutators' do
       configuration.history_expiration_time = 123

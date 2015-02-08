@@ -2,6 +2,9 @@ require 'bundler/setup'
 require 'frogger-logger'
 require 'support/dummy_client'
 require 'support/client_expectations'
+require 'codeclimate-test-reporter'
+
+CodeClimate::TestReporter.start
 
 Bundler.setup
 

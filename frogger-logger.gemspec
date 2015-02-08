@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec", [">= 2.14.1"]
   s.add_development_dependency "guard"
   s.add_development_dependency "guard-rspec"
+  s.add_development_dependency "codeclimate-test-reporter"
   s.files       = Dir['lib/**/*']
   s.homepage    = 'https://github.com/ciembor/frogger-logger/'
   s.license     = 'MIT'
